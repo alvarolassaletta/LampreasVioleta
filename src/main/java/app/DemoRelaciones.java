@@ -25,14 +25,17 @@ public class DemoRelaciones {
 
     // Ruta del JSON de exportación/importación
     private static final File JSON_FILE = new File("data", "lampreasvioleta_export.json");
+    private static final File JSON_REPARTIDOR = new File("data", "repartidores_export.json");
 
     // DAOs
     private static final ClienteDAO clienteDAO = new ClienteDAO();
     private static final DetalleClienteDAO detalleClienteDAO = new DetalleClienteDAO();
-
     private static final ProductoDAO productoDAO = new ProductoDAO();
     private static final PedidoDAO pedidoDAO = new PedidoDAO();
     private static final DetallePedidoDAO detallePedidoDAO = new DetallePedidoDAO();
+
+    private static final RepartidorDAO repartidorDAO= new RepartidorDAO();
+    private static final ComercialDAO comercialDAO = new ComercialDAO();
 
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(System.in)) {
@@ -68,9 +71,22 @@ public class DemoRelaciones {
                         case "13" -> listarDetallesPedido();
                         case "14" -> insertarDetallePedido(sc);
 
+                        // ----------------- REPARTIDOR ----------------
+                        case "15" -> listarRepartidores();
+                        case "16" -> insertarRepartidor(sc);
+                        case "17" -> buscarRepartidoresPorId(sc);
+                        case "18" -> eliminarRepartidor(sc);
+
+                        // ----------------- REPARTIDOR ----------------
+                        case "19"-> listarComerciales();
+                        case "20"-> insertarComercial(sc);
+                        case "21"-> buscarComercialPorId(sc);
+                        case "22"-> eliminarComercial(sc);
                         // ---------------- JSON EXPORT / IMPORT ------------
-                        case "20" -> exportarJson();
-                        case "21" -> importarJson();
+                        case "23" -> exportarJson();
+                        case "24" -> importarJson();
+                        case "25" -> exportarRepartidores();
+                        case "26" -> importarRepartidores();
 
                         case "0" -> {
                             System.out.println("FIN.");
@@ -120,9 +136,23 @@ public class DemoRelaciones {
         System.out.println("  13 - Listar detalles pedido");
         System.out.println("  14 - Insertar detalle pedido");
         System.out.println();
+        System.out.println("REPARTIDOR");
+        System.out.println("  15 - Listar repartidores");
+        System.out.println("  16 - Insertar repartidor");
+        System.out.println("  17 - Buscar pedido por id");
+        System.out.println("  18 - Eliminar repartidor ");
+        System.out.println();
+        System.out.println("COMERCIAL");
+        System.out.println("  19 - Listar comerciales");
+        System.out.println("  20 - Insertar comercial");
+        System.out.println("  21 - Buscar comercial por id");
+        System.out.println("  22 - Eliminar comercial");
+        System.out.println();
         System.out.println("JSON");
-        System.out.println("  20 - Exportar BD a JSON");
-        System.out.println("  21 - Importar JSON a BD (INSERT en orden FK)");
+        System.out.println("  23 - Exportar BD a JSON");
+        System.out.println("  24 - Importar JSON a BD (INSERT en orden FK)");
+        System.out.println("  25 - Exportar repartidores a JSON");
+        System.out.println("  26 - Importar JSON con repartidores  a BD (INSERT en orden FK)");
         System.out.println();
         System.out.println("  0  - Salir");
         System.out.println("=========================================");
@@ -132,6 +162,7 @@ public class DemoRelaciones {
     // CLIENTE
     // =========================================================
 
+
     private static void listarClientes() throws SQLException {
         List<Cliente> list = clienteDAO.findAll();
         System.out.println("CLIENTES: " + list.size());
@@ -139,10 +170,13 @@ public class DemoRelaciones {
     }
 
     private static void insertarCliente(Scanner sc) throws SQLException {
+
         System.out.print("id: ");
         int id = Integer.parseInt(sc.nextLine().trim());
+
         System.out.print("nombre: ");
         String nombre = sc.nextLine().trim();
+
         System.out.print("email: ");
         String email = sc.nextLine().trim();
 
@@ -291,11 +325,101 @@ public class DemoRelaciones {
     }
 
     // =========================================================
+    // REPARTIDOR
+    // =========================================================
+
+    //Métodos para insertar, buscar por id, listar y eliminar repartidores
+
+    public static void insertarRepartidor (Scanner sc) throws SQLException{
+        System.out.print("id: ");
+        int repartidorId = Integer.parseInt(sc.nextLine().trim());
+
+        System.out.print("nombre: ");
+        String nombreRepartidor = sc.nextLine().trim();
+
+        System.out.print("email: ");
+        String emailRepartidor = sc.nextLine().trim();
+
+        System.out.println("telefono: ");
+        String telefonoRepartidor= sc.nextLine().trim();
+
+        repartidorDAO.insert(new Repartidor(repartidorId,nombreRepartidor,emailRepartidor,telefonoRepartidor));
+        System.out.println("Repartidor insertado.");
+    }
+
+    public  static void listarRepartidores()throws SQLException{
+        List<Repartidor> list = repartidorDAO.findAll();
+        System.out.println("REPARTIDORES: " + list.size());
+        list.forEach(System.out::println);
+    }
+
+    public static void buscarRepartidoresPorId(Scanner sc) throws  SQLException{
+        System.out.println("idRepartidor: ");
+        Integer idRepartidor = Integer.parseInt(sc.nextLine().trim());
+        Repartidor repartidor = repartidorDAO.findById(idRepartidor);
+        System.out.println(repartidor == null ? "No encontrado." : repartidor);
+    }
+
+    public static  void eliminarRepartidor(Scanner sc) throws SQLException{
+        System.out.println("idRepartidor: ");
+        Integer idRepartidor = Integer.parseInt(sc.nextLine().trim());
+        int code = repartidorDAO.delete(idRepartidor);
+        System.out.println(code==1 ?"Repartidor eliminado.":"No encontrado.");
+    }
+
+    // =========================================================
+    // COMERCIAL
+    // =========================================================
+
+    public  static void insertarComercial(Scanner sc)throws  SQLException{
+        System.out.print("id: ");
+        Integer idComercial = Integer.parseInt(sc.nextLine().trim());
+
+        System.out.println("nombre: ");
+        String nombreComercial = sc.nextLine().trim();
+
+        System.out.println("email: ");
+        String emailComercial= sc.nextLine().trim();
+
+        System.out.println("telefono: ");
+        String telefonoComercial= sc.nextLine().trim();
+
+        comercialDAO.insert(new Comercial(idComercial,nombreComercial,emailComercial,telefonoComercial));
+        System.out.println("Comercial insertado.");
+    }
+
+    public  static void listarComerciales()throws SQLException{
+        List<Comercial> list= comercialDAO.findAll();
+        System.out.println("COMERCIALES" + list.size());
+        list.forEach(System.out::println);
+    }
+    public  static void buscarComercialPorId(Scanner sc) throws  SQLException{
+        System.out.println("idComercial: ");
+        Integer idComercial= Integer.parseInt(sc.nextLine().trim());
+        Comercial comercial = comercialDAO.findById(idComercial);
+        System.out.println( comercial==null ? "No encontrado" : comercial);
+    }
+
+    public  static void eliminarComercial(Scanner sc) throws SQLException{
+        System.out.println("idComercial: ");
+        Integer idComercial = Integer.parseInt(sc.nextLine().trim());
+        int code = comercialDAO.delete(idComercial);
+        System.out.println(code==1 ?"Comercial eliminado.":"No encontrado.");
+    }
+
+
+
+
+
+
+    // =========================================================
     // JSON EXPORT / IMPORT
     // =========================================================
 
     /**
      * Exporta una "foto" de la BD a JSON.
+     * 'Llena las listas de AppData con los registros de las tablas  usando los métodos findAll
+     * y serializa la instancia de AppData
      * Lee todas las tablas y las serializa.
      */
     private static void exportarJson() throws SQLException, IOException {
@@ -306,11 +430,26 @@ public class DemoRelaciones {
         data.setProductos(productoDAO.findAll());
         data.setPedidos(pedidoDAO.findAll());
         data.setDetallesPedido(detallePedidoDAO.findAll());
+        data.setRepartidores(repartidorDAO.findAll());
+        data.setComerciales(comercialDAO.findAll());
 
         JsonIO.write(JSON_FILE, data);
 
         System.out.println("Exportado JSON en: " + JSON_FILE.getAbsolutePath());
     }
+
+    // =========================================================
+    // EXPORTAL COMERCIAL
+    // =========================================================
+    public static void exportarRepartidores() throws  SQLException,IOException{
+        RepartidoresData repartidoresData = new RepartidoresData();
+        repartidoresData.setRepartidores(repartidorDAO.findAll());
+        JsonIO.write(JSON_REPARTIDOR,repartidoresData);
+        System.out.println("Repartidores exportados en: " + JSON_REPARTIDOR.getAbsolutePath());
+    }
+
+
+
 
     /**
      * Importa JSON a la BD haciendo INSERT en orden correcto por FKs:
@@ -360,5 +499,20 @@ public class DemoRelaciones {
         }
 
         System.out.println("Importación finalizada.");
+    }
+
+    /**Importa los repartidores del fichero JSON_REPARTIDOR, se recogen una instancia de RepartidoresData
+    * y se insertan en la base de datos*/
+
+    private static void importarRepartidores() throws  SQLException, IOException{
+        if (!JSON_REPARTIDOR.exists()) {
+            System.out.println("No existe el JSON: " + JSON_REPARTIDOR.getAbsolutePath());
+            return;
+        }
+        RepartidoresData repartidoresData = JsonIO.read(JSON_REPARTIDOR,RepartidoresData.class);
+        for(Repartidor repartidor: repartidoresData.getRepartidores()){
+            repartidorDAO.insert(repartidor);
+        }
+
     }
 }

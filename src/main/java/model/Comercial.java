@@ -14,6 +14,7 @@ public class Comercial {
         this.id = id;
         this.nombre = name;
         this.email = email;
+        this.telefono= telefono;
     }
 
 

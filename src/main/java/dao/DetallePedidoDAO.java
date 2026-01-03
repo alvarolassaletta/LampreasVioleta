@@ -19,7 +19,7 @@ public class DetallePedidoDAO {
 
     private static final String INSERT_SQL =
             """
-            INSERT INTO ldetalle_pedido
+            INSERT INTO detalle_pedido
             (pedido_id, producto_id, cantidad, precio_unit)
             VALUES (?, ?, ?, ?)
             """;

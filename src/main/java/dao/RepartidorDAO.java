@@ -12,41 +12,45 @@ import java.util.List;
 
 public class RepartidorDAO {
 
-    //insertar  un repartidor
-    private static final String  INSERT_SQL=
-            "INSERT INTO repartidor (id,nombre,email,telefono) " +
-                    "VALUES(?,?,?,?)";
+    // insertar un repartidor
+    private static final String INSERT_SQL = """
+            INSERT INTO repartidor (id, nombre, email, telefono)
+            VALUES (?, ?, ?, ?)
+            """;
 
-    //listar los repartidores
-    private static final String  SELECT_ALL=
-            "SELECT id,nombre,email,telefono  " +
-                    "FROM repartidor " +
-                    "ORDER BY id";
+    // listar todos los repartidores
+    private static final String SELECT_ALL = """
+            SELECT id, nombre, email, telefono
+            FROM repartidor
+            ORDER BY id
+            """;
 
-    //listar los repartidores por id
-    private static final String SELECT_BY_ID=
-            "SELECT id,nombre,email,telefono " +
-                    "FROM  repartidor" +
-                    "WHERE id = ?";
+    // buscar repartidor por id
+    private static final String SELECT_BY_ID = """
+            SELECT id, nombre, email, telefono
+            FROM repartidor
+            WHERE id = ?
+            """;
 
     // update un repartidor
-    private static final String UPDATE_SQL=
-            "UPDATE repartidor" +
-                    "SET nombre=?, email=?,telefono=?" +
-                    "WHERE id= ?";
-    private static final String DELETE_SQL=
-            "DELETE FROM repartidor " +
-                    "WHERE id=?";
+    private static final String UPDATE_SQL= """
+            UPDATE repartidor\s
+            SET nombre=?, email=?,telefono=?
+            WHERE id= ?
+            """;
+
+    private static final String DELETE_SQL="""
+            DELETE FROM repartidor WHERE id=?""";
 
     private static final String SEARCH_SQL ="""
-               SELECT id,nombre,email,telefono
-               FROM repartidor 
-               WHERE CAST(id AS TEXT) ILIKE ?
-                    OR nombre ILIKE ?
-                    OR email ILIKE ?
-                    OR telefono ILIKE ?
-               ORDER BY id
-               """;
+           SELECT id,nombre,email,telefono
+           FROM repartidor 
+           WHERE CAST(id AS TEXT) ILIKE ?
+                OR nombre ILIKE ?
+                OR email ILIKE ?
+                OR telefono ILIKE ?
+           ORDER BY id
+           """;
 
     //Metodo para insertar un  repartidor
     public void insert (Repartidor repartidor) throws SQLException {

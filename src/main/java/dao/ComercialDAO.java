@@ -13,32 +13,38 @@ import java.util.List;
 public class ComercialDAO {
 
     //insertar  un comercial
-    private static final String  INSERT_SQL=
-            "INSERT INTO comercial (id,nombre,email,telefono) " +
-                    "VALUES(?,?,?,?)";
+    // Es conveniente usar text blocks """ """ en vez de concatenacion para evitar errores de sintaxis
+    // con los espacios
+    private static final String  INSERT_SQL= """
+            INSERT INTO comercial (id,nombre,email,telefono) 
+            VALUES(?,?,?,?)""";
 
     //listar los comerciales
-    private static final String  SELECT_ALL=
-            "SELECT id,nombre,email,telefono  " +
-                    "FROM comercial " +
-                    "ORDER BY id";
+    private static final String  SELECT_ALL= """
+           SELECT id,nombre,email,telefono
+           FROM comercial
+           ORDER BY id
+           """;
+
 
     //listar los comerciales  por id
-    private static final String SELECT_BY_ID=
-            "SELECT id,nombre,email,telefono " +
-                    "FROM  comercial" +
-                    "WHERE id = ?";
+    private static final String SELECT_BY_ID= """
+            SELECT id,nombre,email,telefono
+            FROM  comercial
+            WHERE id = ?;
+            """;
 
     //Actualizar campos en un registro de comercial
-    private static final String UPDATE_SQL=
-            "UPDATE comercial" +
-                    "SET nombre=?, email=?,telefono=?" +
-                    "WHERE id= ?";
+    private static final String UPDATE_SQL= """
+            UPDATE comercial 
+            SET nombre=?, email=?,telefono=? 
+            WHERE id= ?""";
+
 
     //Eliminar un registro de comercial
-    private static final String DELETE_SQL=
-            "DELETE FROM comercial" +
-                    "WHERE id=?";
+    private static final String DELETE_SQL= """ 
+            DELETE FROM comercial
+            WHERE id=?""";
 
     //Búsqueda de comerciales en función de un filtro específico
     private static final String SEARCH_SQL ="""

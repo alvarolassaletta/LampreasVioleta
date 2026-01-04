@@ -9,7 +9,7 @@ public final class Db {
 
     private static final String HOST = System.getenv().getOrDefault("PG_HOST", "localhost");
     private static final String PORT = System.getenv().getOrDefault("PG_PORT", "5432");
-    private static final String DB = System.getenv().getOrDefault("PG_DB", "LampreaDb");
+    private static final String DB = System.getenv().getOrDefault("PG_DB", "lampreasvioleta_backup");
     private static final String USER = System.getenv().getOrDefault("PG_USER", "postgres");
     //Contraseña del usuario
     private static final String PASS = System.getenv().getOrDefault("PG_PASS", "");

@@ -27,21 +27,21 @@ public class ClienteDAO {
     // ----------------------------------------------------------
 
     private static final String INSERT_SQL =
-            "INSERT INTO cliente (id, nombre, email) VALUES (?, ?, ?)";
+            "INSERT INTO cliente (id, nombre, email, comercial_id) VALUES (?, ?, ?,?)";
     // Consulta SQL para insertar un cliente.
     // Usamos ? para parámetros → evita SQL injection y mejora rendimiento con sentencias preparadas.
 
     private static final String SELECT_BY_ID_SQL =
-            "SELECT id, nombre, email FROM cliente WHERE id = ?";
+            "SELECT id, nombre, email, comercial_id FROM cliente WHERE id = ?";
     // Consulta SQL para buscar un cliente por su ID.
 
     private static final String SELECT_ALL_SQL =
-            "SELECT id, nombre, email FROM cliente ORDER BY id";
+            "SELECT id, nombre, email, comercial_id FROM cliente ORDER BY id";
     // Consulta SQL para obtener todos los clientes ordenados por id.
 
 
     private static final String SEARCH_SQL = """
-                    SELECT id, nombre, email
+                    SELECT id, nombre, email, comercial_id
                     FROM cliente
                     WHERE CAST(id AS TEXT) ILIKE ? 
                         OR nombre ILIKE ?  
@@ -68,6 +68,13 @@ public class ClienteDAO {
             ps.setString(2, c.getNombre());  // Parámetro 2 → columna nombre
             ps.setString(3, c.getEmail());   // Parámetro 3 → columna email
 
+            //Parametro 4 -> columna comercialId
+            if (c.getComercialId() != null) {
+                ps.setInt(4, c.getComercialId());
+            } else {
+                ps.setNull(4, java.sql.Types.INTEGER);
+            }
+
             ps.executeUpdate();
             // Ejecuta la sentencia. Como es un INSERT, no devuelve ResultSet.
 
@@ -88,6 +95,14 @@ public class ClienteDAO {
             ps.setInt(1, c.getId());
             ps.setString(2, c.getNombre());
             ps.setString(3, c.getEmail());
+
+            if (c.getComercialId() != null) {
+                ps.setInt(4, c.getComercialId());
+            } else {
+                ps.setNull(4, java.sql.Types.INTEGER);
+                //establecer el null
+            }
+
             ps.executeUpdate();
         }
     }
@@ -111,11 +126,7 @@ public class ClienteDAO {
                 if (rs.next()) {
                     // Si rs.next() = true → hay fila. Avanzamos a ella y leemos sus columnas.
 
-                    return new Cliente(
-                            rs.getInt("id"),          // Columna 'id'
-                            rs.getString("nombre"),   // Columna 'nombre'
-                            rs.getString("email")     // Columna 'email'
-                    );
+                    return mapRow(rs);
                 }
 
                 return null;
@@ -142,14 +153,7 @@ public class ClienteDAO {
             while (rs.next()) {
                 // Iteramos por cada fila del ResultSet.
                 // Cada fila se convierte en un objeto Cliente.
-
-                Cliente c = new Cliente(
-                        rs.getInt("id"),
-                        rs.getString("nombre"),
-                        rs.getString("email")
-                );
-
-                out.add(c);   // Añadimos el cliente a la lista.
+                out.add(mapRow(rs)); // Añadimos el cliente a la lista.
             }
         }
 
@@ -183,7 +187,8 @@ public class ClienteDAO {
         Cliente c = new Cliente(
                 rs.getInt("id"),
                 rs.getString("nombre"),
-                rs.getString("email")
+                rs.getString("email"),
+                (Integer) rs.getObject("comercial_id") // puede ser null
         );
 
         return c;

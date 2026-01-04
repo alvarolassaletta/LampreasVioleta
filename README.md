@@ -87,7 +87,7 @@ Cada entidad tiene su **clase de modelo** en Java
 ---
 ###  📦 Nuevos DAO
 
-Se incluyen DAO para las neuvas entidades incorporadas: 
+Se incluyen DAO para las nuevas entidades incorporadas: 
 
 - **ComercialDAO**
 - **RepartidorDAO**

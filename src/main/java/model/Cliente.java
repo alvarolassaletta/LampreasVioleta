@@ -20,9 +20,15 @@ public class Cliente {
     // 1:N
     private List<Pedido> pedidos = new ArrayList<>();
 
+    //1:N  Cliente - Comercial
+    private Integer comercialId;
+
     public Cliente() {}
     public Cliente(Integer id, String nombre, String email) {
         this.id = id; this.nombre = nombre; this.email = email;
+    }
+    public Cliente(Integer id, String nombre, String email,Integer comercialId ) {
+        this.id = id; this.nombre = nombre; this.email = email; this.comercialId= comercialId;
     }
 
     public Integer getId() { return id; }
@@ -40,7 +46,15 @@ public class Cliente {
     public List<Pedido> getPedidos() { return pedidos; }
     public void setPedidos(List<Pedido> pedidos) { this.pedidos = pedidos; }
 
+    public Integer getComercialId() {
+        return comercialId;
+    }
+
+    public void setComercialId(Integer comercialId) {
+        this.comercialId = comercialId;
+    }
+
     @Override public String toString() {
-        return "Cliente{id=%d, nombre='%s', email='%s'}".formatted(id, nombre, email);
+        return "Cliente{id=%d, nombre='%s', email='%s',comercialId=%s}".formatted(id, nombre, email,comercialId);
     }
 }

@@ -16,9 +16,15 @@ public class Pedido {
     // N:M mediante filas en la tabla detalle_pedido
     private List<DetallePedido> lineas = new ArrayList<>();
 
+    //1:N  Pedido - Repartidor
+    private Integer repartidorId;
+
     public Pedido() {}
     public Pedido(Integer id, Integer clienteId, LocalDate fecha) {
         this.id = id; this.clienteId = clienteId; this.fecha = fecha;
+    }
+    public Pedido(Integer id, Integer clienteId, LocalDate fecha, Integer repartidorId) {
+        this.id = id; this.clienteId = clienteId; this.fecha = fecha; this.repartidorId=repartidorId;
     }
 
     public Integer getId() { return id; }
@@ -37,8 +43,16 @@ public class Pedido {
         return lineas.stream().mapToDouble(DetallePedido::getImporte).sum();
     }
 
+    public Integer getRepartidorId() {
+        return repartidorId;
+    }
+
+    public void setRepartidorId(Integer repartidorId) {
+        this.repartidorId = repartidorId;
+    }
+
     @Override public String toString() {
-        return "Pedido{id=%d, clienteId=%d, fecha=%s, total=%.2f}"
-                .formatted(id, clienteId, fecha, getTotal());
+        return "Pedido{id=%d, clienteId=%d, fecha=%s, repartidorId=%s,total=%.2f}"
+                .formatted(id, clienteId, fecha,repartidorId, getTotal());
     }
 }

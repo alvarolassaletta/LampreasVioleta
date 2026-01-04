@@ -1,0 +1,195 @@
+{
+  "clientes" : [ {
+    "id" : 1,
+    "nombre" : "Roberto Rodriguez",
+    "email" : "rober@rodri.com",
+    "detalle" : null,
+    "pedidos" : [ ],
+    "comercialId" : null
+  }, {
+    "id" : 2,
+    "nombre" : "Andrea Rodriguez",
+    "email" : "Andrea@rodri.com",
+    "detalle" : null,
+    "pedidos" : [ ],
+    "comercialId" : null
+  }, {
+    "id" : 3,
+    "nombre" : "Pepon Nieto",
+    "email" : "peronnieto@forocoches.com",
+    "detalle" : null,
+    "pedidos" : [ ],
+    "comercialId" : null
+  }, {
+    "id" : 4,
+    "nombre" : "Jose",
+    "email" : "jose@arimatea.com",
+    "detalle" : null,
+    "pedidos" : [ ],
+    "comercialId" : null
+  }, {
+    "id" : 5,
+    "nombre" : "Sara",
+    "email" : "sara@sarafernandez.com",
+    "detalle" : null,
+    "pedidos" : [ ],
+    "comercialId" : null
+  }, {
+    "id" : 6,
+    "nombre" : "Manuel",
+    "email" : "manuelmanulito@gmail.com",
+    "detalle" : null,
+    "pedidos" : [ ],
+    "comercialId" : null
+  }, {
+    "id" : 7,
+    "nombre" : "Pepón Nieto Forocoches",
+    "email" : "pepon@forocoches.es",
+    "detalle" : null,
+    "pedidos" : [ ],
+    "comercialId" : null
+  }, {
+    "id" : 8,
+    "nombre" : "Restaurante, \"El Roble\"",
+    "email" : "elroblecontacto@elroble.com",
+    "detalle" : null,
+    "pedidos" : [ ],
+    "comercialId" : null
+  }, {
+    "id" : 9,
+    "nombre" : "Casa 'El meson del Norte'",
+    "email" : "casaelmesondelnorte@elmesondelnorte.com",
+    "detalle" : null,
+    "pedidos" : [ ],
+    "comercialId" : 1
+  }, {
+    "id" : 10,
+    "nombre" : "Sociedad \"La Concha\" Donosti",
+    "email" : "laconchadonosti@gmail.com",
+    "detalle" : null,
+    "pedidos" : [ ],
+    "comercialId" : 1
+  }, {
+    "id" : 11,
+    "nombre" : "Residencia 'Los albatros' La coruña",
+    "email" : "losalbatros@losalbatros.com",
+    "detalle" : null,
+    "pedidos" : [ ],
+    "comercialId" : 2
+  } ],
+  "detallesCliente" : [ {
+    "id" : 6,
+    "direccion" : "some address",
+    "telefono" : "12343232234",
+    "notas" : "no notes"
+  }, {
+    "id" : 7,
+    "direccion" : "unknown",
+    "telefono" : "unknown",
+    "notas" : "No notes"
+  }, {
+    "id" : 8,
+    "direccion" : "Avenida de los Robles 46 bis Pontevedra",
+    "telefono" : "987678543",
+    "notas" : ""
+  } ],
+  "productos" : [ {
+    "id" : 1,
+    "nombre" : "angulas lomo negro",
+    "precio" : 120.0
+  }, {
+    "id" : 2,
+    "nombre" : "lampreas de rio",
+    "precio" : 100.0
+  }, {
+    "id" : 3,
+    "nombre" : "lampreas del Caspio",
+    "precio" : 140.0
+  }, {
+    "id" : 4,
+    "nombre" : "lamprea de bolsa",
+    "precio" : 150.0
+  } ],
+  "pedidos" : [ {
+    "id" : 1,
+    "clienteId" : 1,
+    "fecha" : "2026-01-03",
+    "lineas" : [ ],
+    "repartidorId" : null,
+    "total" : 0.0
+  }, {
+    "id" : 2,
+    "clienteId" : 2,
+    "fecha" : "2026-01-03",
+    "lineas" : [ ],
+    "repartidorId" : null,
+    "total" : 0.0
+  }, {
+    "id" : 3,
+    "clienteId" : 3,
+    "fecha" : "2026-01-03",
+    "lineas" : [ ],
+    "repartidorId" : null,
+    "total" : 0.0
+  }, {
+    "id" : 4,
+    "clienteId" : 3,
+    "fecha" : "2016-01-04",
+    "lineas" : [ ],
+    "repartidorId" : 1,
+    "total" : 0.0
+  }, {
+    "id" : 5,
+    "clienteId" : 3,
+    "fecha" : "2026-01-04",
+    "lineas" : [ ],
+    "repartidorId" : 2,
+    "total" : 0.0
+  } ],
+  "detallesPedido" : [ {
+    "pedidoId" : 1,
+    "productoId" : 1,
+    "cantidad" : 30,
+    "precioUnit" : 120.0,
+    "importe" : 3600.0
+  }, {
+    "pedidoId" : 2,
+    "productoId" : 1,
+    "cantidad" : 40,
+    "precioUnit" : 120.0,
+    "importe" : 4800.0
+  }, {
+    "pedidoId" : 2,
+    "productoId" : 2,
+    "cantidad" : 25,
+    "precioUnit" : 100.0,
+    "importe" : 2500.0
+  } ],
+  "repartidores" : [ {
+    "id" : 1,
+    "nombre" : "Diego",
+    "email" : "diegoreparte@ejemplo.com",
+    "telefono" : "123321123"
+  }, {
+    "id" : 2,
+    "nombre" : "Fernando Peréz",
+    "email" : "fernandovespino@gmail.com",
+    "telefono" : "987789987"
+  }, {
+    "id" : 3,
+    "nombre" : "Marina",
+    "email" : "marinalopezlopez@gmail.com",
+    "telefono" : "123456789"
+  } ],
+  "comerciales" : [ {
+    "id" : 1,
+    "nombre" : "Alfredo Caballero Ibarra",
+    "email" : "afrecaib@lampreasvioleta.com",
+    "telefono" : "123456789"
+  }, {
+    "id" : 2,
+    "nombre" : "Leire Casado Solís",
+    "email" : "leirecasadosolis@lampreasvioleta.com",
+    "telefono" : "123876345"
+  } ]
+}

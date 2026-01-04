@@ -1,0 +1,18 @@
+{
+  "repartidores" : [ {
+    "id" : 1,
+    "nombre" : "Diego",
+    "email" : "diegoreparte@ejemplo.com",
+    "telefono" : "123321123"
+  }, {
+    "id" : 2,
+    "nombre" : "Fernando Peréz",
+    "email" : "fernandovespino@gmail.com",
+    "telefono" : "987789987"
+  }, {
+    "id" : 3,
+    "nombre" : "Marina",
+    "email" : "marinalopezlopez@gmail.com",
+    "telefono" : "123456789"
+  } ]
+}

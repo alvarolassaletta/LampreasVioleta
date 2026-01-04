@@ -136,13 +136,13 @@ public class DemoRelaciones {
         System.out.println("  13 - Listar detalles pedido");
         System.out.println("  14 - Insertar detalle pedido");
         System.out.println();
-        System.out.println("REPARTIDOR");
+        System.out.println("REPARTIDOR (1:N  pedido-reprtidor)" );
         System.out.println("  15 - Listar repartidores");
         System.out.println("  16 - Insertar repartidor");
         System.out.println("  17 - Buscar pedido por id");
         System.out.println("  18 - Eliminar repartidor ");
         System.out.println();
-        System.out.println("COMERCIAL");
+        System.out.println("COMERCIAL 1:N cliente - repartidor");
         System.out.println("  19 - Listar comerciales");
         System.out.println("  20 - Insertar comercial");
         System.out.println("  21 - Buscar comercial por id");

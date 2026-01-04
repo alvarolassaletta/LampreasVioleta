@@ -83,6 +83,7 @@ Se han añadido las siguientes tablas en la base de datos:
 - **Repartidor**: id, nombre, email, telefono  
 
 Cada entidad tiene su **clase de modelo** en Java 
+
 ---
 ###  📦 Nuevos DAO
 

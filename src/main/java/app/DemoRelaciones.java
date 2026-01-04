@@ -180,7 +180,14 @@ public class DemoRelaciones {
         System.out.print("email: ");
         String email = sc.nextLine().trim();
 
-        clienteDAO.insert(new Cliente(id, nombre, email));
+        //En la bd hay ON DELETE SET NULL
+        //Si se eleimina un  resistro comercial de la tabla comercial, el campo
+        //comercial_id en cliente queda en null
+        System.out.print("idComercial (opcional, ENTER si ninguno): ");
+        String idComercialStr = sc.nextLine().trim();
+        Integer idComercial = idComercialStr.isEmpty() ? null : Integer.parseInt(idComercialStr);
+
+        clienteDAO.insert(new Cliente(id, nombre, email,idComercial));
         System.out.println("Cliente insertado.");
     }
 
@@ -279,7 +286,14 @@ public class DemoRelaciones {
         System.out.print("fecha (YYYY-MM-DD): ");
         LocalDate fecha = LocalDate.parse(sc.nextLine().trim());
 
-        pedidoDAO.insert(new Pedido(id, clienteId, fecha));
+        //En la bd hay ON DELETE SET NULL
+        //Si se elimina un resistro repartidor de la tabla repartidores, el campo
+        // repartidor_id en repartidores queda en null
+        System.out.print("idRepartidor (opcional, ENTER si ninguno): ");
+        String idRepartidorStr = sc.nextLine().trim();
+        Integer idRepartidor = idRepartidorStr.isEmpty() ? null : Integer.parseInt(idRepartidorStr);
+
+        pedidoDAO.insert(new Pedido(id, clienteId, fecha,idRepartidor));
         System.out.println("Pedido insertado.");
     }
 

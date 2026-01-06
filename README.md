@@ -108,7 +108,7 @@ Se crea una clase contenedora `RepartidoresData` para la exportacion/ importacio
 
 - Las nuevas entidades integradas, Comercial y Repartidor, se integran con el modelo de datos existente.
 
-Cliente - Comercial -> Relacion 1:N ( un cliente se relaciona con un solo comercial y un comercial tieen varios clientes) 
+Cliente - Comercial -> Relacion 1:N ( un cliente se relaciona con un solo comercial y un comercial tiene varios clientes) 
 
 Pedido - Repartidor -> Relacion 1:N ( un pedido es repartido por un solo repartidor y un repartidor reparte varios pedidos) 
 
